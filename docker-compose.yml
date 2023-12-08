@@ -40,6 +40,6 @@ services:
     ports:
       - ${DJ_OUT_PORT}:8080
     volumes:
-      - "${MOUNT_DIR}/static:${STATIC_ROOT}"
+      - "${MOUNT_DIR}/static:/django/"
     depends_on:
       - db

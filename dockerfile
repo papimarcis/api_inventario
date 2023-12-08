@@ -6,7 +6,6 @@ RUN rm -rf /var/cache/apt/lists
 WORKDIR /django
 
 COPY requirements.txt requirements.txt
-COPY . .
 
 RUN python -m pip install -r requirements.txt
 RUN rm -Rf /root/.cache/pip

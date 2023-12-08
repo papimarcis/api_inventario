@@ -10,13 +10,13 @@ services:
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASS}
     ports:
-      - "${DB_OUT_PORT}:${DB_PORT}"
+      - ${DB_OUT_PORT}:${DB_PORT}
     volumes:
       - "${MOUNT_DIR}/db/:/var/lib/mysql"
   
   django:
     build:
-      context: .
+      context: ${MOUNT_DIR}/
       dockerfile: dockerfile
     container_name: api-inventario
     environment:
@@ -34,11 +34,11 @@ services:
       - /bin/sh
       - -c
       - |
-        python /django/web_vinces/manage.py makemigrations --noinput
-        python /django/web_vinces/manage.py migrate --noinput
-        python /django/web_vinces/manage.py runserver 0.0.0.0:8080
+        python /django/inventario/manage.py makemigrations --noinput
+        python /django/inventario/manage.py migrate --noinput
+        python /django/inventario/manage.py runserver 0.0.0.0:8080
     ports:
-      - "${DJ_OUT_PORT}:8080"
+      - ${DJ_OUT_PORT}:8080
     volumes:
       - "${MOUNT_DIR}:/django/"
     depends_on:

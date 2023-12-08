@@ -40,6 +40,6 @@ services:
     ports:
       - ${DJ_OUT_PORT}:8080
     volumes:
-      - "${MOUNT_DIR}/inventario:/django/inventario"
+      - "${MOUNT_DIR}:/django/inventario"
     depends_on:
       - db

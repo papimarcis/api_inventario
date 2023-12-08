@@ -16,7 +16,7 @@ services:
   
   django:
     build:
-      context: .
+      context: ${MOUNT_DIR}
       dockerfile: dockerfile
     container_name: api-inventario
     environment:

@@ -21,7 +21,7 @@ services:
     container_name: api-inventario
     environment:
       DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
-      STATIC_ROOT: ${DIR_STATIC_FILES}
+      STATIC_ROOT: ${STATIC_ROOT}
       DJANGO_ALLOWED_HOST: ${DJANGO_ALLOWED_HOST}
       DB_ENGINE: ${DB_ENGINE}
       DB_HOST: db

@@ -1,0 +1,1 @@
+Hola, esto es un proyecto para crear un inventario para casa.

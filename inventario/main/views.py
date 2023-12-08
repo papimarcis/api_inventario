@@ -6,13 +6,13 @@ from django.shortcuts import render
 
 def home(request):
     res = {'code': 500, 'founded': False, 'response': {}}
-    f = open(os.path.join(settings.STATIC_LOG, 'deleteUser.txt'), "a")
+    f = open(os.path.join(settings.STATIC_LOG, 'logs.txt'), "a")
     log_file = File(f)
     try:
         if request.method == "POST":
             res = {'code': 200, 'founded': True, 'response': "Hi"}
     except Exception as e:
-        log_file.write('ERR: (deleteUser) {}\n'.format(str(e)))
+        log_file.write('ERR: (logs) {}\n'.format(str(e)))
     try:
         log_file.close()
         f.close()

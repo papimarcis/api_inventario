@@ -1,0 +1,47 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0.32
+    container_name: database_inventario
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+    ports:
+      - "${DB_OUT_PORT}:${DB_PORT}"
+    volumes:
+      - "./db/:/var/lib/mysql"
+  
+  django:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: Proyecto_Vinces
+    environment:
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+      STATIC_ROOT: ${DIR_STATIC_FILES}
+      DJANGO_ALLOWED_HOST: ${DJANGO_ALLOWED_HOST}
+      DB_ENGINE: ${DB_ENGINE}
+      DB_HOST: db
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_ROOT_USER}
+      DB_PASS: ${DB_ROOT_PASS}
+      DB_PORT: ${DB_PORT}
+    restart: always
+    command:
+      - /bin/sh
+      - -c
+      - |
+        python /django/web_vinces/manage.py makemigrations --noinput
+        python /django/web_vinces/manage.py migrate --noinput
+        python /django/web_vinces/manage.py runserver 0.0.0.0:8080
+    ports:
+      - "${DJ_OUT_PORT}:8080"
+    env_file:
+      - .env
+    volumes:
+      - ".:/django/"
+    depends_on:
+      - db

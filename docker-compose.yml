@@ -16,7 +16,7 @@ services:
   
   django:
     build:
-      context: .
+      context: ${MOUNT_DIR}/
       dockerfile: dockerfile
     container_name: api-inventario
     environment:
@@ -39,6 +39,8 @@ services:
         python /django/web_vinces/manage.py runserver 0.0.0.0:8080
     ports:
       - "${DJ_OUT_PORT}:8080"
+    env_file:
+      - ${MOUNT_DIR}/.env
     volumes:
       - "${MOUNT_DIR}:/django/"
     depends_on:

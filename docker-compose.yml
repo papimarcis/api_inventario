@@ -12,11 +12,11 @@ services:
     ports:
       - ${DB_OUT_PORT}:${DB_PORT}
     volumes:
-      - "${MOUNT_DIR}/data/db:/var/lib/mysql"
+      - "./data/db:/var/lib/mysql"
   
   django:
     build:
-      context: ${MOUNT_DIR}
+      context: .
       dockerfile: dockerfile
     container_name: api-inventario
     environment:
@@ -40,6 +40,6 @@ services:
     ports:
       - ${DJ_OUT_PORT}:8080
     volumes:
-      - "${MOUNT_DIR}:/django"
+      - ".:/django"
     depends_on:
       - db

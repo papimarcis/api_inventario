@@ -1,3 +1,4 @@
 **/env
 **/.env
 *_pycache__
+**/data

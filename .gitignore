@@ -2,3 +2,5 @@
 **/.env
 *_pycache__
 **/data
+**/db
+**/logs/*.txt
